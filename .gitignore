@@ -126,3 +126,6 @@ Backup of *.doc*
 
 # Temporary Files
 *.tmp
+
+# CSV files
+*.csv
