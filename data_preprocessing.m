@@ -24,7 +24,7 @@ for i  = 3:1:10
     ylabel('Amplitude')
     hold on
     
-    [C, L] = wavedec(emu, 4,  'db5');
+    [C, L] = wavedec(emu, 4,  'db5'); // Trialing db5
     approx = appcoef(C, L, 'db5');
     [cd1, cd2, cd3, cd4] = detcoef(C, L, [1 2 3 4]);
     new_C = [approx; 0*cd4; 0*cd3; 0*cd2; 0*cd1];
