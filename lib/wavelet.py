@@ -26,7 +26,9 @@ class Wavelet(object):
             raise ValueError("No raw data to plot")
 
         # Testing gaussian filter
-        #plt.plot(self.datetime, self.raw)
+        plt.plot(self.datetime[:5000], self.raw[:5000], color="red")
+        plt.xlabel("Datetime")
+        plt.ylabel("Temperature")
         raw_smooth = gaussian_filter1d(self.raw, sigma=5)
         plt.plot(self.datetime[:5000], raw_smooth[:5000], label="raw data (gaussian filter)", color="black")
         plt.legend()
