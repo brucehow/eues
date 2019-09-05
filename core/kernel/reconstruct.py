@@ -12,8 +12,5 @@ def proc_signal(sig, fs = 1/60, wavename = 'db5'):
 	print("wavelet: {}, decomposition level: {}, fs: {}".format(wavename, lvl, fs))
 	wl = pywt.Wavelet(wavename)
 	coeff_all = pywt.wavedec(sig, wl, level=lvl)
-	recon = pywt.waverec(coeff_all, wavelet= wl)
-
-	#plt.show()
-	return recon + np.mean(sig)
+	return (pywt.waverec(coeff_all, wavelet= wl). np.mean(sig))
 
