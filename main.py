@@ -6,7 +6,7 @@ import pdb
 
 '''
 api: load_data(input_file)
-description: use pandas to load xlsx
+description: use pandas to load .xlsx file
 '''
 def load_data(input_file):
 	data = pd.read_excel(input_file)
