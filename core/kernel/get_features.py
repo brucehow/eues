@@ -22,3 +22,35 @@ def get_baseline(sig, struct_len):
     ret1 = erode(sig, struct_len)
     ret2 = dilate(ret1, struct_len)
     return ret2
+
+def get_onsets(baseline, mask_len):
+    delta = baseline[1:] - baseline[0:-1]
+    start, end, pre_start, pre_end, onsets = -1, -1, -1, -1, []
+    for i in range(len(delta)):
+        if -1 == start and 0 != delta[i]:
+            start = i
+        #print("start:{}, value{}; ".format(start, delta[i]), )
+        if -1 != start and -1 == end and 0 == delta[i]:
+            end = i
+        #print("end:{}, value{}; ".format(end, delta[i]), )
+        if -1 != start and -1 != end:
+            if(end - start < mask_len):
+                #pre_start = start
+                end = -1
+                continue
+            
+            if (start - pre_end < mask_len):
+                #print("debug0",)
+                #print(pre_end, start, end, start - pre_end, end - start, mask_len)
+                start = pre_start
+                onsets[-1] = start + np.argmin(baseline[start:end])
+            #start, end = -1, -1
+            else:
+                onsets.append(start + np.argmin(baseline[start:end]))
+            #print("debug1",)
+            #print(pre_end, start, end, start - pre_end, end - start, mask_len)
+            
+            pre_start, pre_end = start,end
+            start,end = -1,-1
+    #pdb.set_trace()
+    return np.array(onsets)
