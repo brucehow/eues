@@ -61,3 +61,14 @@ def get_peaks(sig, onsets):
         peak = onsets[i] + np.argmax(sig[onsets[i]:onsets[i+1]])
         peaks.append(peak)
     return np.array(peaks)
+
+'''
+    api: get_features(sig, fs = 1/60)
+    description: extract features from processed signal
+    '''
+def get_features(sig, fs = 1/60):
+    struct_len = 80
+    baseline = get_baseline(sig, struct_len)
+    onsets = get_onsets(baseline, int(0.5*struct_len))
+    peaks  = get_peaks(sig, onsets)
+    return (onsets, peaks)
