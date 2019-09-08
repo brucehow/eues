@@ -11,5 +11,4 @@ def plot_features(origin_sig, proc_sig, features, casename, fs=1/60):
     plt.legend()
     plt.xlabel('Time (hours)')
     plt.ylabel('Temperature')
-    plt.savefig(f'./output{casename}_1.png', dpi=100)
-    
+    plt.savefig('./output{}_1.png'.format(casename), dpi=100)
