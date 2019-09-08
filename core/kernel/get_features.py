@@ -54,3 +54,10 @@ def get_onsets(baseline, mask_len):
             start,end = -1,-1
     #pdb.set_trace()
     return np.array(onsets)
+
+def get_peaks(sig, onsets):
+    peaks = []
+    for i in range(len(onsets)-1):
+        peak = onsets[i] + np.argmax(sig[onsets[i]:onsets[i+1]])
+        peaks.append(peak)
+    return np.array(peaks)
