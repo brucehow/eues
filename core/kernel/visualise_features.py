@@ -7,7 +7,7 @@ def plot_features(origin_sig, proc_sig, features, casename, fs=1/60):
 
     plt.figure(1)
     plt.plot(t, origin_sig, color='red', label='Original Signal')
-    plt.plot(t, proc_sig, color='gree', label='Reconstructed Signal')
+    plt.plot(t, proc_sig, color='green', label='Reconstructed Signal')
     plt.legend()
     plt.xlabel('Time (hours)')
     plt.ylabel('Temperature')
