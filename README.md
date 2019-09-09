@@ -23,6 +23,12 @@ eues
     └── main.py                     <-- Main application module
 ```
 
+## Dependencies
+- [PyWavelets](https://github.com/PyWavelets/pywt)
+- [SciPy](https://github.com/scipy/scipy)
+- [numpy](https://github.com/numpy/numpy)
+- [Matplotlib](https://github.com/matplotlib/matplotlib)
+
 ## Authors
 - [Bruce How](https://github.com/brucehow)
 - [Kristian Tricoli](https://github.com/KristianTricoli)
