@@ -26,9 +26,10 @@ eues
 ## Dependencies
 - [PyWavelets](https://github.com/PyWavelets/pywt)
 - [SciPy](https://github.com/scipy/scipy)
-- [numpy](https://github.com/numpy/numpy)
+- [Numpy](https://github.com/numpy/numpy)
 - [Matplotlib](https://github.com/matplotlib/matplotlib)
 - [XlsxWriter](https://github.com/jmcnamara/XlsxWriter)
+- [PyCWT](https://github.com/regeirk/pycwt)
 
 ## Authors
 - [Bruce How](https://github.com/brucehow)
