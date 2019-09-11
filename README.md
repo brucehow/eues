@@ -28,6 +28,7 @@ eues
 - [SciPy](https://github.com/scipy/scipy)
 - [numpy](https://github.com/numpy/numpy)
 - [Matplotlib](https://github.com/matplotlib/matplotlib)
+- [XlsxWriter](https://github.com/jmcnamara/XlsxWriter)
 
 ## Authors
 - [Bruce How](https://github.com/brucehow)
