@@ -65,3 +65,10 @@ def get_peaks(sig, onsets):
         peaks.append(peak)
         areas.append(np.sum(sig[onsets[i]:onsets[i+1]]))
     return np.array(peaks), np.array(areas)
+
+def get_returns(sig, onsets, peaks):
+    rturns = np.zeros_like(peaks)
+    for i in range(len(peaks)):
+        sample = np.abs(sig[peaks[i]:onsets[i+1]])
+        rturns[i] = peaks[i] + np.argmin(sample)
+    return rturns
