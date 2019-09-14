@@ -1,9 +1,12 @@
 import numpy as np
+from scipy import signal
+from scipy import stats
+import pdb
 '''
-api: erode, dilate, get_baseline, get_onsets, get_peaks
-description: a series api to detect onsets and peaks using
-1-D morphological filter
-'''
+    api: erode, dilate, get_baseline, get_onsets, get_peaks
+    description: a series api to detect onsets and peaks using
+    1-D morphological filter
+    '''
 def erode(sig, struct_len):
     ret = np.zeros_like(sig)
     for i in range(0, len(ret) - struct_len, 1):
@@ -18,7 +21,7 @@ def dilate(sig, struct_len):
     ret[0:struct_len-2] = ret[struct_len-1]
     return ret
 
-def get_baseline(sig, struct_len):
+def get_onsetsline(sig, struct_len):
     ret1 = erode(sig, struct_len)
     ret2 = dilate(ret1, struct_len)
     return ret2
@@ -56,19 +59,9 @@ def get_onsets(baseline, mask_len):
     return np.array(onsets)
 
 def get_peaks(sig, onsets):
-    peaks = []
+    peaks, areas = [], []
     for i in range(len(onsets)-1):
         peak = onsets[i] + np.argmax(sig[onsets[i]:onsets[i+1]])
         peaks.append(peak)
-    return np.array(peaks)
-
-'''
-    api: get_features(sig, fs = 1/60)
-    description: extract features from processed signal
-    '''
-def get_features(sig, fs = 1/60):
-    struct_len = 80
-    baseline = get_baseline(sig, struct_len)
-    onsets = get_onsets(baseline, int(0.5*struct_len))
-    peaks  = get_peaks(sig, onsets)
-    return (onsets, peaks)
+        areas.append(np.sum(sig[onsets[i]:onsets[i+1]]))
+    return np.array(peaks), np.array(areas)
