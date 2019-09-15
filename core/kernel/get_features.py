@@ -72,3 +72,17 @@ def get_returns(sig, onsets, peaks):
         sample = np.abs(sig[peaks[i]:onsets[i+1]])
         rturns[i] = peaks[i] + np.argmin(sample)
     return rturns
+def get_baseline(sig, struct_len):
+    '''
+        half_filter_len = int((24*60*60*fs)/16)
+        baseline = sig.copy()
+        #pdb.set_trace()
+        for i in range(len(sig)):
+        if i >= half_filter_len and i < len(sig) - half_filter_len:
+        sample = sig[(i-half_filter_len):(i + 1 + half_filter_len)]
+        baseline[i] = np.mean(sample)
+        '''
+    #b,a = signal.butter(50,fs/200,'lowpass', fs=fs)
+    #baseline = signal.filtfilt(b,a,sig)
+    
+    return get_onsetsline(sig, struct_len)
