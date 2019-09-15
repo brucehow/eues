@@ -1,16 +1,17 @@
+import numpy as np
+import kernels
+
 def main():
-    """
-    Google style documenting
-    
-    Arguments:
-        param1 -- param1 desc
-        param2 -- param2 desc
-    
-    Returns:
-        param3 -- param3 desc
-    """
-    pass
+	inputfile = './input/Tb data Cheetah.xlsx'
+	data = kernels.load_data(inputfile)
+	cols  = data.columns.values
 
-
-if __name__ == "__main__":
-    main()
+	for i in range(2, len(cols)):
+		print("start to process test case: {}".format(cols[i]))
+		orig_sig  = np.array(data.iloc[:,i])
+		proc_sig, base  = kernels.proc_signal(orig_sig)
+		features  = kernels.get_features(proc_sig + base)
+		kernels.plot_features(orig_sig, proc_sig, base, features, cols[i])
+		print("end of test case: {}\n".format(cols[i]))
+if __name__ == '__main__':
+	main()
