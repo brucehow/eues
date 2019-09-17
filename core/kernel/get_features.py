@@ -95,3 +95,13 @@ def remove_fakeonsets(sig, onsets, thd):
         if height >= thd:
             true_onsets.append(onsets[i])
     return np.array(true_onsets)
+
+'''
+    api: get_features(sig, fs = 1/60)
+    description: extract features from processed signal
+    '''
+def get_statistics(feature):
+    mnv = np.mean(feature)
+    stdv = feature.std()
+    semv = stats.sem(feature)
+    return mnv, stdv, semv
