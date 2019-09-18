@@ -28,8 +28,8 @@ def plot_features(origin_sig, proc_sig, base, features, casename, fs=1/60):
 
     plt.figure(3)
     plt.plot(t, proc_sig, color='red', label='Reconstructed Signal')
-    plt.scatter(onsets/fs/60/60, proc_sig[onsets], color='green', marker='o', label='onset')
-    plt.scatter(peaks/fs/60/60,  proc_sig[peaks], color='blue', marker='*', label='peak')
+    plt.scatter(onsets/fs/60/60, proc_sig[onsets], color='green', marker='o', label='Onset')
+    plt.scatter(peaks/fs/60/60,  proc_sig[peaks], color='blue', marker='*', label='Peak')
     plt.legend()
     plt.xlabel('Time (hours)')
     plt.ylabel('Temperature (degrees)')

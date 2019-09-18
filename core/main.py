@@ -1,5 +1,10 @@
 import numpy as np
-import kernels
+import pandas as pd
+import kernel
+
+def load_data(input_file):
+	data = pd.read_excel(input_file)
+	return data
 
 def main():
 	inputfile = './input/Tb data Cheetah.xlsx'
