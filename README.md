@@ -12,14 +12,14 @@ eues
 ├── README.md
 └── core
     ├── gui                         <-- GUI package for interface
-    │   └── __init.py__
+    │   └── __init__.py
     ├── kernel                      <-- Kernal package for data handling
-    │   ├── __init.py__
+    │   ├── __init__.py             <-- Function exports
     │   ├── get_features.py         <-- Wavelet characteristic functions
     │   ├── reconstruct.py          <-- Data preprocessing and reconstruction
-    │   └── visualise_features.py
+    │   └── visualise_features.py   <-- Plot eue characteristics
     ├── tests                       <-- Test package for unit testing
-    │   └── __init.py__
+    │   └── __init__.py
     └── main.py                     <-- Main application module
 ```
 
