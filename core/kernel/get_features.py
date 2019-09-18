@@ -95,3 +95,39 @@ def remove_fakeonsets(sig, onsets, thd):
         if height >= thd:
             true_onsets.append(onsets[i])
     return np.array(true_onsets)
+
+'''
+    api: get_features(sig, fs = 1/60)
+    description: extract features from processed signal
+    '''
+def get_statistics(feature):
+    mnv = np.mean(feature)
+    stdv = feature.std()
+    semv = stats.sem(feature)
+    return mnv, stdv, semv
+
+def get_features(sig, fs = 1/60):
+    struct_len = 80
+    onsetsline = get_onsetsline(sig, struct_len)
+    baseline = get_baseline(sig, 3*struct_len)
+    onsets = get_onsets(onsetsline, int(0.5*struct_len))
+    #pdb.set_trace()
+    onsets = remove_fakeonsets(sig, onsets, 2.5*np.std(baseline))
+    peaks, areas  = get_peaks(sig, onsets)
+    #onsets, peaks = remove_fakepoints(sig, onsets, peaks, 2.5*np.std(baseline))
+    rturns = get_returns(sig - baseline, onsets, peaks)
+    
+    onsets_1 = onsets[:-1]
+    t_onsets = onsets_1*fs
+    t_peaks  = (peaks - onsets_1)*fs
+    t_duration  = (rturns - onsets_1)*fs
+    amplitude = sig[peaks] - sig[onsets_1]
+    t_inter = (onsets[1:] - rturns)*fs
+    eues_num = t_peaks.size
+    waveletnum = 1000 #TBD
+    mean_amp, std_amp, sem_amp = get_statistics(amplitude)
+    mean_dur, std_dur, sem_dur = get_statistics(t_duration)
+    mean_area, std_area, sem_area = get_statistics(areas)
+    mean_inter = np.mean(t_inter)
+    #pdb.set_trace()
+    return (onsets, peaks, rturns, baseline)
