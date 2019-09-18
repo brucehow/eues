@@ -1,3 +1,3 @@
 from .get_features import *
 from .reconstruct import *
-from .visiualise_features import *
+from .visualise_features import *
