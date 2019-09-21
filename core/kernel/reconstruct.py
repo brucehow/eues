@@ -15,11 +15,11 @@ def proc_signal(sig, fs = 1/60, wavename = 'db5'):
 	#pdb.set_trace()
 	#cA6, cD6,cD5, cD4, cD3, cD2, cD1= coeff_all
 	coeff_all[0] = coeff_all[0]*0
-	coeff_all[-5] = coeff_all[-5]*0
-	coeff_all[-4] = coeff_all[-4]*0
-	coeff_all[-3] = coeff_all[-3]*0
-	coeff_all[-2] = coeff_all[-2]*0
-	coeff_all[-1] = coeff_all[-1]*0
+	coeff_all[-5] = coeff_all[-5]*2
+	coeff_all[-4] = coeff_all[-4]*2
+	coeff_all[-3] = coeff_all[-3]*2
+	coeff_all[-2] = coeff_all[-2]*2
+	coeff_all[-1] = coeff_all[-1]*2
 	t = np.linspace(0, sig.size-1, sig.size)/fs/60/60
 	#cA6 = cA6*0
 	#pdb.set_trace()
