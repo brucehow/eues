@@ -75,3 +75,17 @@ def get_returns(sig, onsets, peaks, sd):
     return rturns
 def get_baseline(sig, struct_len):
     return get_onsetsline(sig, struct_len)
+
+def remove_fakeonsets(sig, onsets, thd):
+    true_onsets = []
+    for i in range(len(onsets)-1):
+        sample = sig[onsets[i]:onsets[i+1]]
+        height = np.max(sample) - np.min(sample)
+        if height >= thd:
+            true_onsets.append(onsets[i])
+    return np.array(true_onsets)
+
+def get_time_window(sig):
+    start = 0
+    end   = sig.size
+    return start, end
