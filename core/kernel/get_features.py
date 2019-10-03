@@ -89,3 +89,37 @@ def get_time_window(sig):
     start = 0
     end   = sig.size
     return start, end
+
+'''
+api: get_features(sig, fs = 1/60)
+description: extract features from processed signal
+'''
+def get_statistics(feature):
+	mnv = np.mean(feature)
+	stdv = feature.std()
+	semv = stats.sem(feature)
+	return mnv, stdv, semv
+
+def get_features(sig, fs = 1/60):
+	struct_len = 80
+	onsetsline = get_onsetsline(sig, struct_len)
+	baseline = get_baseline(sig, 3*struct_len)
+	onsets = get_onsets(onsetsline, int(0.5*struct_len))
+	#pdb.set_trace()
+	onsets = remove_fakeonsets(sig, onsets, 1*np.std(baseline))
+	peaks, areas  = get_peaks(sig, onsets)
+	#onsets, peaks = remove_fakepoints(sig, onsets, peaks, 2.5*np.std(baseline))
+	rturns = get_returns(sig, onsets, peaks, 0.25*np.std(baseline))
+
+	onsets_1 = onsets[:-1]
+	t_onsets = onsets_1*fs
+	t_peaks  = (peaks - onsets_1)*fs
+	t_duration  = (rturns - onsets_1)*fs
+	t_tobaseline = (onsets[1:] - onsets_1)*fs
+	amplitude = sig[peaks] - sig[onsets_1]
+	t_inter = (onsets[1:] - rturns)*fs
+
+
+	return (onsets, peaks, rturns, baseline), \
+	(t_onsets, t_peaks, t_tobaseline, t_duration, amplitude, areas, t_inter)
+
