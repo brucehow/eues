@@ -123,3 +123,27 @@ def get_features(sig, fs = 1/60):
 	return (onsets, peaks, rturns, baseline), \
 	(t_onsets, t_peaks, t_tobaseline, t_duration, amplitude, areas, t_inter)
 
+def dump_features(eues_info, filename):
+    t_onsets, t_peaks, t_tobaseline, t_duration, amplitude, areas, t_inter = eues_info
+    eues_num = t_peaks.size
+    waveletnum = 1000 #TBD
+    mean_amp, std_amp, sem_amp = get_statistics(amplitude)
+    mean_dur, std_dur, sem_dur = get_statistics(t_duration)
+    mean_area, std_area, sem_area = get_statistics(areas)
+    mean_inter, std_inter, sem_inter = get_statistics(t_inter)
+    with open('./output/{}_eues_info.csv'.format(filename), 'w', newline='') as f:
+        wt = csv.writer(f)
+        wt.writerow(['EUEs Id', 'time of onset', 'time to max',\
+                     'time to return to baseline', 'duration', 'amplitude',
+                     'area under the curve', 'inter EUEs time'])
+        for idx, line in enumerate(zip(t_onsets, t_peaks, t_tobaseline, t_duration, amplitude, areas, t_inter)):
+            wt.writerow([idx] + list(line))
+
+    with open('./output/{}_overall_info.txt'.format(filename), 'w') as f:
+        f.write('total number of EUEs detected: {}\n'.format(eues_num))
+        f.write('number of wavelets: {}\n'.format(waveletnum))
+        f.write('feature   : {:>10s} {:>10s} {:>10s}\n'.format('MEAN','SD', 'SEM'))
+        f.write('amplitude : {:10.4f} {:10.4f} {:10.4f}\n'.format(mean_amp, std_amp, sem_amp))
+        f.write('duration  : {:10.4f} {:10.4f} {:10.4f}\n'.format(mean_dur, std_dur, sem_dur))
+        f.write('area      : {:10.4f} {:10.4f} {:10.4f}\n'.format(mean_area, std_area, sem_area))
+        f.write('inter time: {:10.4f} {:10.4f} {:10.4f}\n'.format(mean_inter, std_inter, sem_inter))
