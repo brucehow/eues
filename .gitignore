@@ -129,3 +129,6 @@ Backup of *.doc*
 
 # CSV files
 *.csv
+
+# VSCode
+.vscode/

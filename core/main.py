@@ -18,5 +18,6 @@ def main():
 		features  = kernel.get_features(proc_sig + base)
 		kernel.plot_features(orig_sig, proc_sig, base, features, cols[i])
 		print("end of test case: {}\n".format(cols[i]))
+
 if __name__ == '__main__':
 	main()
