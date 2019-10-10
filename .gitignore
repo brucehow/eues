@@ -132,3 +132,6 @@ Backup of *.doc*
 
 # VSCode
 .vscode/
+
+# Input files
+input/

@@ -15,8 +15,9 @@ def main():
 		print("start to process test case: {}".format(cols[i]))
 		orig_sig  = np.array(data.iloc[:,i])
 		proc_sig, base  = kernel.proc_signal(orig_sig)
-		features  = kernel.get_features(proc_sig + base)
-		kernel.plot_features(orig_sig, proc_sig, base, features, cols[i])
+		visal_f, sttis_f  = kernel.get_features(proc_sig + base)
+		kernel.plot_features(orig_sig, proc_sig, base, visal_f, cols[i])
+		kernel.dump_features(sttis_f, cols[i])
 		print("end of test case: {}\n".format(cols[i]))
 
 if __name__ == '__main__':
