@@ -42,12 +42,7 @@ def plot_spectrum(sig, wavename, casename, fs=1/60):
 	dat = sig
 	dt = 1/fs
 	t = np.linspace(0, sig.size-1, sig.size)/fs/60/60
-	#N = dat.size
-	#t = numpy.arange(0, N) * dt + t0
-	#p = numpy.polyfit(t - t0, dat, 1)
-	#dat_notrend = dat - numpy.polyval(p, t - t0)
-	#std = dat_notrend.std()  # Standard deviation
-	#var = std ** 2  # Variance
+
 	dat_norm = dat / dat.std()  # Normalized dataset
 	mother = wavelet.Morlet(6)
 	s0 = 2 * dt  
@@ -56,7 +51,6 @@ def plot_spectrum(sig, wavename, casename, fs=1/60):
 	wave, scales, freqs, coi, fft, fftfreqs = wavelet.cwt(dat_norm, dt, dj, s0, J, mother)
 	power = (np.abs(wave)) ** 2
 	period = 1 / freqs/60/60
-	#pdb.set_trace()
 	figprops = dict(figsize=(11, 8), dpi=72)
 	fig = plt.figure(**figprops)
 	ax = plt.axes([0.1, 0.75, 0.65, 0.2])
@@ -65,10 +59,7 @@ def plot_spectrum(sig, wavename, casename, fs=1/60):
 	levels = [0.0625, 0.125, 0.25, 0.5, 1, 2, 4, 8, 16]
 	bx.contourf(t, period, power, np.log2(levels),
 			extend='both', cmap=plt.cm.prism)
-	#bx.set_title('b) {} Wavelet Power Spectrum ({})'.format(label, mother.name))
 	bx.set_ylabel('Period (hours)')
 	bx.set_xlabel('Time (hours)')
 	plt.savefig('./output/{}_4.png'.format(casename), dpi = 100)
 	plt.close('all')
-	#plt.show()
-

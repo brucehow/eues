@@ -3,6 +3,7 @@ from scipy import signal
 from scipy import stats
 import csv
 import pdb
+
 '''
 api: erode, dilate, get_baseline, get_onsets, get_peaks
 description: a series api to detect onsets and peaks using
@@ -33,30 +34,21 @@ def get_onsets(baseline, mask_len):
     for i in range(len(delta)):
         if -1 == start and 0 != delta[i]:
             start = i
-            #print("start:{}, value{}; ".format(start, delta[i]), )
         if -1 != start and -1 == end and 0 == delta[i]:
             end = i
-            #print("end:{}, value{}; ".format(end, delta[i]), )
         if -1 != start and -1 != end:
             if(end - start < mask_len):
-                #pre_start = start
                 end = -1
                 continue
 
             if (start - pre_end < mask_len):
-                #print("debug0",)
-                #print(pre_end, start, end, start - pre_end, end - start, mask_len)
                 start = pre_start
                 onsets[-1] = start + np.argmin(baseline[start:end])
-                #start, end = -1, -1
             else:
                 onsets.append(start + np.argmin(baseline[start:end]))
-                #print("debug1",)
-                #print(pre_end, start, end, start - pre_end, end - start, mask_len)
 
             pre_start, pre_end = start,end
             start,end = -1,-1
-    #pdb.set_trace()
     return np.array(onsets)
 
 def get_peaks(sig, onsets):
@@ -73,6 +65,7 @@ def get_returns(sig, onsets, peaks, sd):
         sample = np.abs(sig[peaks[i]:onsets[i+1]] - sd - sig[onsets[i+1]])
         rturns[i] = peaks[i] + np.argmin(sample)
     return rturns
+
 def get_baseline(sig, struct_len):
     return get_onsetsline(sig, struct_len)
 
@@ -105,10 +98,8 @@ def get_features(sig, fs = 1/60):
 	onsetsline = get_onsetsline(sig, struct_len)
 	baseline = get_baseline(sig, 3*struct_len)
 	onsets = get_onsets(onsetsline, int(0.5*struct_len))
-	#pdb.set_trace()
 	onsets = remove_fakeonsets(sig, onsets, 1*np.std(baseline))
 	peaks, areas  = get_peaks(sig, onsets)
-	#onsets, peaks = remove_fakepoints(sig, onsets, peaks, 2.5*np.std(baseline))
 	rturns = get_returns(sig, onsets, peaks, 0.25*np.std(baseline))
 
 	onsets_1 = onsets[:-1]
@@ -118,7 +109,6 @@ def get_features(sig, fs = 1/60):
 	t_tobaseline = (onsets[1:] - onsets_1)*fs
 	amplitude = sig[peaks] - sig[onsets_1]
 	t_inter = (onsets[1:] - rturns)*fs
-
 
 	return (onsets, peaks, rturns, baseline), \
 	(t_onsets, t_peaks, t_tobaseline, t_duration, amplitude, areas, t_inter)
@@ -133,7 +123,7 @@ def dump_features(eues_info, filename):
     mean_inter, std_inter, sem_inter = get_statistics(t_inter)
     with open('./output/{}_eues_info.csv'.format(filename), 'w', newline='') as f:
         wt = csv.writer(f)
-        wt.writerow(['EUEs Id', 'time of onset', 'time to max',\
+        wt.writerow(['EUEs ID', 'time of onset', 'time to max',\
                      'time to return to baseline', 'duration', 'amplitude',
                      'area under the curve', 'inter EUEs time'])
         for idx, line in enumerate(zip(t_onsets, t_peaks, t_tobaseline, t_duration, amplitude, areas, t_inter)):
