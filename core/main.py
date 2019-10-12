@@ -7,7 +7,7 @@ def load_data(input_file):
 	return data
 
 def main():
-	inputfile = './input/Tb data Cheetah.xlsx'
+	inputfile = './input/Tb data Cheetah.xlsx' # Temp sample data
 	data = load_data(inputfile)
 	cols  = data.columns.values
 
