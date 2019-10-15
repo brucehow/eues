@@ -1,24 +1,27 @@
+import tkinter as tk
 import numpy as np
-import pandas as pd
-import kernel
+import shutil
+import tkinter.font as tkFont
+import os
+import analyse
+from tkinter import ttk
+from PIL import Image, ImageTk 
+from tkinter.filedialog import askopenfilename,askdirectory
+from tkinter.messagebox import showerror
 
-def load_data(input_file):
-	data = pd.read_excel(input_file)
-	return data
-
-def main():
-	inputfile = './input/Tb data Cheetah.xlsx' # Temp sample data
-	data = load_data(inputfile)
-	cols  = data.columns.values
-
-	for i in range(2, len(cols)):
-		print("start to process test case: {}".format(cols[i]))
-		orig_sig  = np.array(data.iloc[:,i])
-		proc_sig, base  = kernel.proc_signal(orig_sig)
-		visal_f, sttis_f  = kernel.get_features(proc_sig + base)
-		kernel.plot_features(orig_sig, proc_sig, base, visal_f, cols[i])
-		kernel.dump_features(sttis_f, cols[i])
-		print("end of test case: {}\n".format(cols[i]))
+def gui():
+	window = tk.Tk()
+	window.title('EUES')
+	ft1 = tkFont.Font(family='Fixdsys', size=22, weight=tkFont.BOLD)
+	W = window.winfo_screenwidth()/1.1
+	H = window.winfo_screenheight()/1.1
+	W, H = int(W), int(H)
+	window.geometry('{}x{}'.format(W, H))
+	path = tk.StringVar()
+	s1,s2,s3,s4 = tk.StringVar(),tk.StringVar(),tk.StringVar(),tk.StringVar()
+	s5,s6,s7,s8 = tk.StringVar(),tk.StringVar(),tk.StringVar(),tk.StringVar()
+	s9,s10,s11,s12 = tk.StringVar(),tk.StringVar(),tk.StringVar(),tk.StringVar()
+	s13,s14  = tk.StringVar(),tk.StringVar()
 
 if __name__ == '__main__':
 	main()
