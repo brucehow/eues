@@ -33,6 +33,8 @@ eues
 - [Matplotlib](https://github.com/matplotlib/matplotlib)
 - [XlsxWriter](https://github.com/jmcnamara/XlsxWriter)
 - [PyCWT](https://github.com/regeirk/pycwt)
+- [Pillow](https://github.com/python-pillow/Pillow)
+- [Tkinter](https://docs.python.org/3/library/tkinter.html)
 
 ## Authors
 - [Bruce How](https://github.com/brucehow)
