@@ -33,4 +33,22 @@ def check_input(data, th_begin, th_end, sample_interval, testcase_name, thd):
 		return True, t1, t2, fs, amp_thd
 
 def start_analysis(infile, th_begin, th_end, wavelet, sample_interval, testcase_name, thd):
-  pass
+
+	ret, data = load_data(infile, th_begin, th_end, wavelet, sample_interval, testcase_name)
+	if(True != ret):
+		return ret,[]
+
+	ret, t1, t2, fs, amp_thd = check_input(data, th_begin, th_end, sample_interval, testcase_name, thd)
+	if(True != ret):
+		return ret, []
+
+	orig_sig  = np.array(data[testcase_name])
+	proc_sig, base  = kernel.proc_signal(orig_sig, fs = fs, wavename = wavelet)
+	visal_f, sttis_f  = kernel.get_features(proc_sig + base, fs = fs, thd = amp_thd)
+	pos = ((visal_f[0][:-1] >= t1) & (visal_f[0][:-1] <= t2))
+	if([] == pos):
+		return 'no EUEs found, please enlarge the time duration',[]
+
+	kernel.plot_features(orig_sig, proc_sig, base, visal_f, testcase_name, t1, t2, fs=fs)
+	results = kernel.dump_features(sttis_f, testcase_name, pos)
+	return True, results
