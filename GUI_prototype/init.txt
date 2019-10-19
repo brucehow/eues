@@ -1,0 +1,16 @@
+									
+
+
+
+				Step1: Select the 'input file', which should be .xlsx file, the first coloumn is Date and 
+				       second is Time, and others record EUEs data for each test case
+				Step2: Input the 'time start' and 'time end', which unit is hour. An Error will be raised 
+				       if invalide time is given(e.g., time over the limitation of EUEs record)
+				Step3: Select 'wavelet' for reconstruction
+				Step4: Input sample interval time, default value is 60s, which means the EUEs data is sa-
+				       pled every 60 seconds, or 1 minute
+				Step5: Input the test case name from the 'input file'
+				Step6: Click 'start' button to begin the analysis. If finished, a successful bulletin will 
+				       be raised, and the corresponding results will be shown.
+				Step7: Click 'dump result' to dump the result, which is stored in the './sample/output' f-
+				       older
