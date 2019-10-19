@@ -32,7 +32,6 @@ def gui():
 		err, ret = analyse.start_analysis(infile, th_begin, th_end, wavelet, sample_interval, testcase_name, thd)
 		if True != err:
 			showerror(title="Error", message= "{}".format(err))
-			
 		s1.set('{:.3g}'.format(ret[0]))
 		s2.set('{:.3g}'.format(ret[1]))
 		s3.set('{:.3g}'.format(ret[2]))
@@ -83,6 +82,76 @@ def gui():
 		'rbio2.8', 'rbio3.1', 'rbio3.3', 'rbio3.5', 'rbio3.7', 'rbio3.9', 'rbio4.4', 'rbio5.5', 'rbio6.8',\
 		'dmey', 'gaus1', 'gaus2', 'gaus3', 'gaus4', 'gaus5', 'gaus6', 'gaus7', 'gaus8', 'mexh', 'morl',\
 		'cgau1', 'cgau2', 'cgau3', 'cgau4', 'cgau5', 'cgau6', 'cgau7', 'cgau8', 'shan', 'fbsp', 'cmor'])
+	e7 = tk.Entry(frame12, font=ft1)
 
-if __name__ == '__main__':
-	main()
+	e1.grid(row=0, column=1)
+	e2.grid(row=1, column=1)
+	e3.grid(row=2, column=1)
+	e4.grid(row=3, column=1)
+	e5.grid(row=4, column=1)
+	e6.grid(row=5, column=1)
+	e7.grid(row=6, column=1)
+	e6.current(0)
+	button1 = tk.Button(frame12, text='[Generate Results]', font=ft3, command=lambda: button1_func(e1.get(), \
+			e2.get(), e3.get(), e4.get(), e5.get(), e6.get(), e7.get())).grid(row=7, column=0, sticky=tk.W)
+	
+	tk.Label(frame13, font=ft1, text="Result").grid(row=1, sticky=tk.W)
+	tk.Label(frame13, font=ft1, text="Number of EUEs:").grid(row=2, sticky=tk.W)
+	tk.Label(frame13, font=ft1,text="Number of Wavelets:").grid(row=3,sticky=tk.W)
+	tk.Label(frame13, font=ft1,text="Feature").grid(row=4,sticky=tk.W)
+	tk.Label(frame13, font=ft1,text="Mean").grid(row=4, column=1,sticky=tk.W)
+	tk.Label(frame13, font=ft1,text="SD").grid(row=4, column=2, sticky=tk.W)
+	tk.Label(frame13, font=ft1,text="SEM").grid(row=4, column=3, sticky=tk.W)
+
+	tk.Label(frame13, font=ft1,text="Amplitude:").grid(row=5, sticky=tk.W)
+	tk.Label(frame13, font=ft1,text="Duration:").grid(row=6, sticky=tk.W)
+	tk.Label(frame13, font=ft1,text="Area:").grid(row=7, sticky=tk.W)
+	tk.Label(frame13, font=ft1,text="Inter Time:").grid(row=8, sticky=tk.W)
+	button2 = tk.Button(frame13, font=ft1,text='[Export Results]', command=lambda: button2_func(e2.get())).grid(row=9, column=0, sticky=tk.W)
+
+
+	e1r = tk.Entry(frame13,font=ft1,textvariable = s2)
+	e2r = tk.Entry(frame13,font=ft1,textvariable = s2)
+	e3r = tk.Entry(frame13,font=ft1,textvariable = s3)
+	e4r = tk.Entry(frame13,font=ft1,textvariable = s3)
+
+	e5r = tk.Entry(frame13,font=ft1,textvariable = s4)
+	e6r = tk.Entry(frame13,font=ft1,textvariable = s4)
+	e7r = tk.Entry(frame13,font=ft1,textvariable = s5)
+	e8r = tk.Entry(frame13,font=ft1,textvariable = s5)
+
+	e9r = tk.Entry(frame13,font=ft1,textvariable = s6)
+	e10r = tk.Entry(frame13,font=ft1,textvariable = s6)
+	e11r = tk.Entry(frame13,font=ft1,textvariable = s7)
+	e12r = tk.Entry(frame13,font=ft1,textvariable = s7)
+
+	e13r = tk.Entry(frame13,font=ft1,textvariable = s8)
+	e14r = tk.Entry(frame13,font=ft1,textvariable = s8)
+
+
+	e1r.grid(row=2, column=2)
+	e2r.grid(row=3, column=2)
+
+	e3r.grid(row=5, column=3)
+	e4r.grid(row=5, column=3)
+	e5r.grid(row=5, column=3)
+
+	e6r.grid(row=6, column=4)
+	e7r.grid(row=6, column=4)
+	e8r.grid(row=6, column=4)
+
+	e9r.grid(row=7, column=5)
+	e10r.grid(row=7, column=5)
+	e11r.grid(row=7, column=5)
+
+	e12r.grid(row=8, column=6)
+	e13r.grid(row=8, column=6)
+	e14r.grid(row=8, column=6)
+
+	frame12.pack(side='top', anchor = 'n', padx=10, pady=10)
+	frame13.pack(side='top', anchor = 'n', padx=10, pady=10)
+
+	window.mainloop()
+
+if __name__ == "__main__":
+	gui()
