@@ -92,7 +92,7 @@ def gui():
 	e6.grid(row=5, column=1)
 	e7.grid(row=6, column=1)
 	e6.current(0)
-	button1 = tk.Button(frame12, text='[Generate Results]', font=ft3, command=lambda: button1_func(e1.get(), \
+	button1 = tk.Button(frame12, text='[Generate Results]', font=ft1, command=lambda: button1_func(e1.get(), \
 			e2.get(), e3.get(), e4.get(), e5.get(), e6.get(), e7.get())).grid(row=7, column=0, sticky=tk.W)
 	
 	tk.Label(frame13, font=ft1, text="Result").grid(row=1, sticky=tk.W)
@@ -110,43 +110,43 @@ def gui():
 	button2 = tk.Button(frame13, font=ft1,text='[Export Results]', command=lambda: button2_func(e2.get())).grid(row=9, column=0, sticky=tk.W)
 
 
-	e1r = tk.Entry(frame13,font=ft1,textvariable = s2)
+	e1r = tk.Entry(frame13,font=ft1,textvariable = s1)
 	e2r = tk.Entry(frame13,font=ft1,textvariable = s2)
 	e3r = tk.Entry(frame13,font=ft1,textvariable = s3)
-	e4r = tk.Entry(frame13,font=ft1,textvariable = s3)
+	e4r = tk.Entry(frame13,font=ft1,textvariable = s4)
 
-	e5r = tk.Entry(frame13,font=ft1,textvariable = s4)
-	e6r = tk.Entry(frame13,font=ft1,textvariable = s4)
-	e7r = tk.Entry(frame13,font=ft1,textvariable = s5)
-	e8r = tk.Entry(frame13,font=ft1,textvariable = s5)
+	e5r = tk.Entry(frame13,font=ft1,textvariable = s5)
+	e6r = tk.Entry(frame13,font=ft1,textvariable = s6)
+	e7r = tk.Entry(frame13,font=ft1,textvariable = s7)
+	e8r = tk.Entry(frame13,font=ft1,textvariable = s8)
 
-	e9r = tk.Entry(frame13,font=ft1,textvariable = s6)
-	e10r = tk.Entry(frame13,font=ft1,textvariable = s6)
-	e11r = tk.Entry(frame13,font=ft1,textvariable = s7)
-	e12r = tk.Entry(frame13,font=ft1,textvariable = s7)
+	e9r = tk.Entry(frame13,font=ft1,textvariable = s9)
+	e10r = tk.Entry(frame13,font=ft1,textvariable = s10)
+	e11r = tk.Entry(frame13,font=ft1,textvariable = s11)
+	e12r = tk.Entry(frame13,font=ft1,textvariable = s12)
 
-	e13r = tk.Entry(frame13,font=ft1,textvariable = s8)
-	e14r = tk.Entry(frame13,font=ft1,textvariable = s8)
+	e13r = tk.Entry(frame13,font=ft1,textvariable = s13)
+	e14r = tk.Entry(frame13,font=ft1,textvariable = s14)
 
 
-	e1r.grid(row=2, column=2)
-	e2r.grid(row=3, column=2)
+	e1r.grid(row=2, column=1)
+	e2r.grid(row=3, column=1)
 
-	e3r.grid(row=5, column=3)
-	e4r.grid(row=5, column=3)
+	e3r.grid(row=5, column=1)
+	e4r.grid(row=5, column=2)
 	e5r.grid(row=5, column=3)
 
-	e6r.grid(row=6, column=4)
-	e7r.grid(row=6, column=4)
-	e8r.grid(row=6, column=4)
+	e6r.grid(row=6, column=1)
+	e7r.grid(row=6, column=2)
+	e8r.grid(row=6, column=3)
 
-	e9r.grid(row=7, column=5)
-	e10r.grid(row=7, column=5)
-	e11r.grid(row=7, column=5)
+	e9r.grid(row=7, column=1)
+	e10r.grid(row=7, column=2)
+	e11r.grid(row=7, column=3)
 
-	e12r.grid(row=8, column=6)
-	e13r.grid(row=8, column=6)
-	e14r.grid(row=8, column=6)
+	e12r.grid(row=8, column=1)
+	e13r.grid(row=8, column=2)
+	e14r.grid(row=8, column=3)
 
 	frame12.pack(side='top', anchor = 'n', padx=10, pady=10)
 	frame13.pack(side='top', anchor = 'n', padx=10, pady=10)
