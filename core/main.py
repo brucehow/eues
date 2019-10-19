@@ -92,13 +92,13 @@ def gui():
 	e6.grid(row=5, column=1)
 	e7.grid(row=6, column=1)
 	e6.current(0)
-	button1 = tk.Button(frame12, text='[Analyse]', font=ft1, command=lambda: button1_func(e1.get(), \
+	button1 = tk.Button(frame12, text='[Generate Results]', font=ft1, command=lambda: button1_func(e1.get(), \
 			e2.get(), e3.get(), e4.get(), e5.get(), e6.get(), e7.get())).grid(row=7, column=0, sticky=tk.W)
 	
-	tk.Label(frame13, font=ft1, text="Results").grid(row=1, sticky=tk.W)
+	tk.Label(frame13, font=ft1, text="--Results--").grid(row=1, sticky=tk.W)
 	tk.Label(frame13, font=ft1, text="Number of EUEs:").grid(row=2, sticky=tk.W)
 	tk.Label(frame13, font=ft1,text="Number of Wavelets:").grid(row=3,sticky=tk.W)
-	tk.Label(frame13, font=ft1,text="Features").grid(row=4,sticky=tk.W)
+	tk.Label(frame13, font=ft1,text="--Features--").grid(row=4,sticky=tk.W)
 	tk.Label(frame13, font=ft1,text="Mean").grid(row=4, column=1,sticky=tk.W)
 	tk.Label(frame13, font=ft1,text="Standard Deviation").grid(row=4, column=2, sticky=tk.W)
 	tk.Label(frame13, font=ft1,text="Standard Error of Mean").grid(row=4, column=3, sticky=tk.W)
@@ -107,7 +107,7 @@ def gui():
 	tk.Label(frame13, font=ft1,text="Duration:").grid(row=6, sticky=tk.W)
 	tk.Label(frame13, font=ft1,text="Area:").grid(row=7, sticky=tk.W)
 	tk.Label(frame13, font=ft1,text="Inter Time:").grid(row=8, sticky=tk.W)
-	button2 = tk.Button(frame13, font=ft1,text='[Export]', command=lambda: button2_func(e2.get())).grid(row=9, column=0, sticky=tk.W)
+	button2 = tk.Button(frame13, font=ft1,text='[Export Results]', command=lambda: button2_func(e2.get())).grid(row=9, column=0, sticky=tk.W)
 
 
 	e1r = tk.Entry(frame13,font=ft1,textvariable = s1)
