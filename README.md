@@ -13,6 +13,8 @@ The application structure is based on Jean-Paul Calderone's Filesystem structure
 eues
 ├── LICENSE
 ├── README.md
+├── tests                           <-- Test folder containing relevant testing info
+│   └── usability_tests/            <-- Subdir containing the usability tests information
 └── core
     ├── gui                         <-- GUI package for interface
     │   └── __init__.py
@@ -21,8 +23,6 @@ eues
     │   ├── get_features.py         <-- Wavelet characteristic functions
     │   ├── reconstruct.py          <-- Data preprocessing and reconstruction
     │   └── visualise_features.py   <-- Plot eue characteristics
-    ├── tests                       <-- Test package for unit testing
-    │   └── __init__.py
     └── main.py                     <-- Main application module
 ```
 
