@@ -1,0 +1,7 @@
+total number of EUEs detected: 8
+number of wavelets: 1000
+feature   :       MEAN         SD        SEM
+amplitude :     0.2512     0.1045     0.0395
+duration  :     2.6729     0.9357     0.3537
+area      :  7165.4084  2026.1471   765.8116
+inter time:     0.4396     0.1594     0.0603
