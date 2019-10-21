@@ -161,12 +161,13 @@ def get_statistics(feature):
     semv = stats.sem(feature)
     return mnv, stdv, semv
 
-def get_features(sig, fs=1/60):
+def get_features(sig, fs=1/60, thd=0.25):
     """
     Extracts features from a given processed signal.
     
     :param sig: The signal requiring the extraction
     :param fs: The frequency of the signal, defaults to 1/60
+    :param thd: Added threshhold variable, defaults at 0.25
     :return: The series of features from the given signal
     """
     struct_len = 80
@@ -175,7 +176,7 @@ def get_features(sig, fs=1/60):
     onsets = get_onsets(onsetsline, int(0.5*struct_len))
     onsets = remove_fakeonsets(sig, onsets, 1*np.std(baseline))
     peaks, areas  = get_peaks(sig, onsets)
-    rturns = get_returns(sig, onsets, peaks, 0.25*np.std(baseline))
+    rturns = get_returns(sig, onsets, peaks, thd*np.std(baseline))
 
     onsets_1 = onsets[:-1]
     t_onsets = onsets_1*fs
@@ -188,17 +189,21 @@ def get_features(sig, fs=1/60):
     return (onsets, peaks, rturns, baseline), \
     (t_onsets, t_peaks, t_tobaseline, t_duration, amplitude, areas, t_inter)
 
-def dump_features(eues_info, filename):
+def dump_features(eues_info, filename, pos, numofwavelets):
     """
     Export the features and informtion of each eue acquired from the data
     to a particular file
     
     :param eues_info: An array containing the list of eue features
     :param filename: The filename to export the results to
+    :param pos: The relative position of the analysed column
+    :param numofwavelets: The number of wavelets
     """
     t_onsets, t_peaks, t_tobaseline, t_duration, amplitude, areas, t_inter = eues_info
+    t_onsets, t_peaks, t_tobaseline, t_duration, amplitude, areas, t_inter = \
+        t_onsets[pos], t_peaks[pos], t_tobaseline[pos], t_duration[pos], amplitude[pos], areas[pos], t_inter[pos]
     eues_num = t_peaks.size
-    waveletnum = 1000
+    waveletnum = numofwavelets
     mean_amp, std_amp, sem_amp = get_statistics(amplitude)
     mean_dur, std_dur, sem_dur = get_statistics(t_duration)
     mean_area, std_area, sem_area = get_statistics(areas)

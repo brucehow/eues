@@ -28,6 +28,6 @@ def proc_signal(sig, fs=1/60, wavename='db5'):
         if 0 == idx or idx >= 2 :
             coeff_all[idx] = coeff*0
     t = np.linspace(0, sig.size-1, sig.size)/fs/60/60
-    recon = pywt.waverec(coeff_all, wavelet= wl)
-    return recon, np.mean(sig)
+    recon = pywt.waverec(coeff_all, wavelet=wl)
+    return recon, np.mean(sig), lvl
 

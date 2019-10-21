@@ -76,12 +76,12 @@ def start_analysis(infile, th_begin, th_end, wavelet, sample_interval, testcase_
         return ret, []
 
     orig_sig  = np.array(data[testcase_name])
-    proc_sig, base  = kernel.proc_signal(orig_sig, fs = fs, wavename = wavelet)
-    visal_f, sttis_f  = kernel.get_features(proc_sig + base, fs = fs, thd = amp_thd)
+    proc_sig, base, lvl = kernel.proc_signal(orig_sig, fs=fs, wavename=wavelet)
+    visal_f, sttis_f = kernel.get_features(proc_sig + base, fs=fs, thd=amp_thd)
     pos = ((visal_f[0][:-1] >= t1) & (visal_f[0][:-1] <= t2))
     if([] == pos):
         return 'no EUEs found, please enlarge the time duration',[]
 
     kernel.plot_features(orig_sig, proc_sig, base, visal_f, testcase_name, t1, t2, fs=fs)
-    results = kernel.dump_features(sttis_f, testcase_name, pos)
+    results = kernel.dump_features(sttis_f, testcase_name, pos, round((t2-t1)/(2**lvl)))
     return True, results
