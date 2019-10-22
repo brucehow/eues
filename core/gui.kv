@@ -1,0 +1,274 @@
+
+
+<SelectFile@BoxLayout>:
+	orientation: 'horizontal'
+	label_text: 'none'
+	file_path: ''
+	file_text: 'none'
+	file_in: file_in_id
+	Label:
+		canvas.before:
+			Color:
+				rgba: 0, 0, 0.6, 1
+			Rectangle:
+				pos:self.pos
+				size:self.size
+		text: root.label_text
+	Label:
+		canvas.before:
+			Color:
+				rgba: 0.2, 0.2, 0.8, 1
+			Rectangle:
+				pos:self.pos
+				size:self.size
+		text: root.file_text
+	Button:
+		id: file_in_id
+		text: 'Choose File'
+		on_release: root.choose_file()
+
+<LabeledInput@BoxLayout>:
+	orientation: 'horizontal'
+	label_text: 'none'
+	text_in: text_in_id
+	default_text: 'none'
+	Label:
+		text: root.label_text
+	TextInput:
+		id: text_in_id
+		multiline: False
+		text: root.default_text
+		valign: 'center'
+		halign: 'center'
+		on_focus: root.change_text()
+
+
+<WaveletDropDown@BoxLayout>:
+	orientation: 'horizontal'
+	label_text: 'none'
+	button: button_id
+	Label:
+		text: root.label_text
+	Button:
+		id: button_id
+		text: 'select'
+		on_release: root.open_dropdown(self)
+
+<FourWideHeader@BoxLayout>:
+	orientation: 'horizontal'
+	e1_text: 'none'
+	e2_text: 'none'
+	e3_text: 'none'
+	e4_text: 'none'
+	Label:
+		canvas.before:
+			Color:
+				rgba: 0.1, 0.1, 0.1, 1
+			Rectangle:
+				pos:self.pos
+				size:self.size
+		text:root.e1_text
+	Label:
+		canvas.before:
+			Color:
+				rgba: 0.4, 0.4, 0.4, 1
+			Rectangle:
+				pos:self.pos
+				size:self.size
+		text:root.e2_text
+	Label:
+		canvas.before:
+			Color:
+				rgba: 0.1, 0.1, 0.1, 1
+			Rectangle:
+				pos:self.pos
+				size:self.size
+		text:root.e3_text
+	Label:
+		canvas.before:
+			Color:
+				rgba: 0.4, 0.4, 0.4, 1
+			Rectangle:
+				pos:self.pos
+				size:self.size
+		text:root.e4_text
+
+<FourWideLabel@BoxLayout>:
+	orientation: 'horizontal'
+	e1_text: 'none'
+	e2_text: 'none'
+	e3_text: 'none'
+	e4_text: 'none'
+	Label:
+		canvas.before:
+			Color:
+				rgba: 0, 0.5, 0.1, 1
+			Rectangle:
+				pos:self.pos
+				size:self.size
+		text:root.e1_text
+	Label:
+		canvas.before:
+			Color:
+				rgba: 0.1, 0.7, 0.2, 1
+			Rectangle:
+				pos:self.pos
+				size:self.size
+		text:root.e2_text
+	Label:
+		canvas.before:
+			Color:
+				rgba: 0, 0.5, 0.1, 1
+			Rectangle:
+				pos:self.pos
+				size:self.size
+		text:root.e3_text
+	Label:
+		canvas.before:
+			Color:
+				rgba: 0.1, 0.7, 0.2, 1
+			Rectangle:
+				pos:self.pos
+				size:self.size
+		text:root.e4_text
+
+<LabeledResult@BoxLayout>:
+	orientation: 'horizontal'
+	label_text: 'none'
+	value_text: 'none'
+	Label:
+		canvas.before:
+			Color:
+				rgba: 0, 0.3, 0.6, 1
+			Rectangle:
+				size:self.size
+				pos:self.pos
+		text: root.label_text
+	Label:
+		canvas.before:
+			Color:
+				rgba: 0.15, 0.55, 0.85, 1
+			Rectangle:
+				size:self.size
+				pos:self.pos
+		text: root.value_text
+
+<ErrorContainer@Modalview>:
+	size_hint:(0.5, 0.3)
+	pos_hint:{'center_x':0.5, 'top':1}
+	err_text:'none'
+	BoxLayout:
+		orientation: 'vertical'
+		Label:
+			canvas.before:
+				Color:
+					rgba: 0.8, 0.1, 0.1, 1
+				Rectangle:
+					size:self.size
+					pos:self.pos
+			size_hint_y: None
+			height: 100
+			text:'Error!'
+		Label:
+			canvas.before:
+				Color:
+					rgba: 0.1, 0.1, 0.1, 1
+				Rectangle:
+					size:self.size
+					pos:self.pos
+			text:root.err_text
+
+
+<ResultsContainer@Modalview>:
+	size_hint:(0.9, 0.9)
+	pos_hint:{'center_x':0.5, 'top':1}
+	e1: e1_id
+	e2: e2_id
+	e3: e3_id
+	e4: e4_id
+	e5: e5_id
+	e6: e6_id
+	e7: e7_id
+	BoxLayout:
+		orientation:'vertical'
+		Label:
+			text:'Results'
+		LabeledResult:
+			id: e1_id
+			label_text: 'Number of EUEs'
+		LabeledResult:
+			id: e2_id
+			label_text: 'Number of Wavelets'
+		LabeledResult:
+			id: e3_id
+			label_text: 'EUEs to Wavelets Ratio'
+		FourWideHeader:
+			e1_text: 'Features'
+			e2_text: 'Mean'
+			e3_text: 'Standard Deviation'
+			e4_text: 'Standard Error of Mean'
+		FourWideLabel:
+			id: e4_id
+			e1_text: 'Amplitude'
+		FourWideLabel:
+			id: e5_id
+			e1_text: 'Duration'
+		FourWideLabel:
+			id: e6_id
+			e1_text: 'Area'
+		FourWideLabel:
+			id: e7_id
+			e1_text: 'Inter Time'
+		Button:
+			text:'Export Results'
+			background_color: (0, 0.7, 1, 1)
+			on_release:root.export_results()
+
+
+<InputsContainer@BoxLayout>:
+	e1: e1_id
+	e2: e2_id
+	e3: e3_id
+	e4: e4_id
+	e5: e5_id
+	e6: e6_id
+	e7: e7_id
+	btn: btn_id
+
+	orientation: 'vertical'
+	SelectFile:
+		id: e1_id
+		label_text: 'Input File'
+
+	LabeledInput:
+		id: e2_id
+		label_text: 'Columns Analysed'
+
+	LabeledInput:
+		id: e3_id
+		label_text: 'Sample-Rate Used(s)'
+
+	LabeledInput:
+		id: e4_id
+		label_text: 'Start Time (hours)'
+
+	LabeledInput:
+		id: e5_id
+		label_text: 'End Time (hours)'
+
+	WaveletDropDown:
+		id: e6_id
+		label_text: 'Wavelet type'
+
+	LabeledInput:
+		id: e7_id
+		label_text: 'EUEs Threshold (xSD)'
+
+	Button:
+		id: btn_id
+		background_color: (0.2, 1, 0.4, 1)
+		text: 'Generate Results'
+		on_release: root.generate_results()
+
+InputsContainer
+
