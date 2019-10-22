@@ -81,7 +81,7 @@ class ResultsContainer(ModalView):
 			err_view.err_text = 'Must export to existing directory'
 			err_view.open()
 		else:
-			#ppossible windows incompatibility here
+			# possible windows incompatibility here
 			for file in os.listdir('./output'):
 				shutil.copy('./output/' + file, selection[0])
 			self.view.dismiss()
@@ -115,8 +115,11 @@ class InputsContainer(BoxLayout):
 	prev_ret = None
 
 	def generate_results(self):
-		for file in os.listdir('./output'):
-			os.remove('./output/' + file)
+		if os.path.exists('./output'):
+			for file in os.listdir('./output'):
+				os.remove('./output/' + file)
+		else:
+			os.mkdir('./output')
 		args = [self.e1.file_path, self.e4.text_in.text, self.e5.text_in.text,
 			self.e6.button.text, self.e3.text_in.text, self.e2.text_in.text,
 			self.e7.text_in.text]
