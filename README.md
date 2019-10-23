@@ -16,14 +16,14 @@ eues
 ├── tests                           <-- Test folder containing relevant testing info
 │   └── usability_tests/            <-- Subdir containing the usability tests information
 └── core
-    ├── gui                         <-- GUI package for interface
-    │   └── __init__.py
     ├── kernel                      <-- Kernal package for data handling
     │   ├── __init__.py             <-- Function exports
+    │   ├── analyse.py              <-- Load the data and begins the analysis from the kernels pkg
     │   ├── get_features.py         <-- Wavelet characteristic functions
     │   ├── reconstruct.py          <-- Data preprocessing and reconstruction
     │   └── visualise_features.py   <-- Plot eue characteristics
-    └── main.py                     <-- Main application module
+    ├── main.py                     <-- Main application module
+    └── gui.kv                      <-- Kivy GUI module
 ```
 
 ## Dependencies
@@ -34,7 +34,8 @@ eues
 - [XlsxWriter](https://github.com/jmcnamara/XlsxWriter)
 - [PyCWT](https://github.com/regeirk/pycwt)
 - [Pillow](https://github.com/python-pillow/Pillow)
-- [Tkinter](https://docs.python.org/3/library/tkinter.html)
+- [Kivy](https://github.com/kivy/kivy)
+
 
 ## Authors
 - [Bruce How](https://github.com/brucehow)
